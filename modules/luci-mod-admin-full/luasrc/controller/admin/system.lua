@@ -196,7 +196,7 @@ local function supports_sysupgrade()
 end
 
 local function supports_reset()
-	return (os.execute([[grep -sqE '"rootfs_data"|"ubi"' /proc/mtd]]) == 0)
+	return (os.execute([[grep -sqE '"rootfs_data"|"ubi"|"system"' /proc/mtd]]) == 0)
 end
 
 local function storage_size()
