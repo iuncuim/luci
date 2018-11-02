@@ -180,7 +180,7 @@ function action_packages()
 end
 
 local function image_supported(image)
-	return (os.execute("sysupgrade -T %q >/dev/null" % image) == 0)
+	return (os.execute("sysupgrade2 -T %q >/dev/null" % image) == 0)
 end
 
 local function image_checksum(image)
@@ -192,7 +192,7 @@ local function image_sha256_checksum(image)
 end
 
 local function supports_sysupgrade()
-	return nixio.fs.access("/lib/upgrade/platform.sh")
+	return 1
 end
 
 local function supports_reset()
@@ -297,7 +297,7 @@ function action_sysupgrade()
 			msg   = luci.i18n.translate("The system is flashing now.<br /> DO NOT POWER OFF THE DEVICE!<br /> Wait a few minutes before you try to reconnect. It might be necessary to renew the address of your computer to reach the device again, depending on your settings."),
 			addr  = (#keep > 0) and "192.168.1.1" or nil
 		})
-		fork_exec("sleep 1; killall dropbear uhttpd; sleep 1; /sbin/sysupgrade %s %q" %{ keep, image_tmp })
+		fork_exec("sleep 1; killall dropbear uhttpd; sleep 1; /sbin/sysupgrade2 %s %q" %{ keep, image_tmp })
 	end
 end
 
