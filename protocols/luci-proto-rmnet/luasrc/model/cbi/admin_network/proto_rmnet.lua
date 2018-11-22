@@ -4,10 +4,10 @@
 local map, section, net = ...
 
 local apn, pincode, username, password
-local auth, ipv6, ifname
+local auth, ipv6, device
 
-ifname = section:taboption("general", Value, "ifname", translate("Interface name"))
-ifname.default = "rmnet_data0"
+device = section:taboption("general", Value, "device", translate("Interface name"))
+device.default = "rmnet_data0"
 
 apn = section:taboption("general", Value, "apn", translate("APN"))
 
