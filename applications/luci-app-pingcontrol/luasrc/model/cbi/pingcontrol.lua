@@ -1,9 +1,9 @@
 require 'luci.sys'
-m = Map("pingcontrol", "Ping Control", translate("Server availability check"))
+m = Map("pingcontrol", "PingControl", translate("Server availability check"))
 
-section_gen = m:section(NamedSection, "core", "pingcontrol", translate("General settings"))  -- create general section
+section_gen = m:section(NamedSection, "pingcontrol", "pingcontrol", translate("General settings"))  -- create general section
 
-enabled = section_gen:option(Flag, "enabled", translate("Enabled"), translate("To switch on/off require a reboot"), translate("Enabled"))  -- create enable checkbox
+enabled = section_gen:option(Flag, "enabled", translate("Enabled"), translate("Enabled"))  -- create enable checkbox
   enabled.rmempty = false
 
 check_period = section_gen:option(Value, "check_period",  translate("Period of check, sec"))
@@ -12,13 +12,13 @@ check_period = section_gen:option(Value, "check_period",  translate("Period of c
   check_period.rmempty = false
   check_period.optional = false
 
-iface = section_gen:option(Value, "iface",  translate("Ping iface name"))
+iface = section_gen:option(Value, "iface",  translate("Ping interface"))
   iface.default = "internet"
   iface.datatype = "network"
   iface.rmempty = false
   iface.optional = false
 
-testip = section_gen:option(DynamicList, "testip",  translate("IP address of remote servers"))
+testip = section_gen:option(DynamicList, "testip",  translate("IP address of remote server"))
   testip.datatype = "ipaddr"
   testip.cast = "string"
   testip.rmempty = false
@@ -35,13 +35,5 @@ sw_before_sysres = section_gen:option(Value, "sw_before_sysres",  translate("Fai
   sw_before_sysres.datatype = "and(uinteger, min(0), max(100))"
   sw_before_sysres.rmempty = false
   sw_before_sysres.optional = false
-
-function m.on_commit(self)
-  -- Modified configurations got committed and the CBI is about to restart associated services
-end
-
-function m.on_init(self)
-  -- The CBI is about to render the Map object
-end
 
 return m
