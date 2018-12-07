@@ -12,7 +12,7 @@ local pairs = pairs
 local error = error
 local table = table
 
-local ipkg = "opkg --force-removal-of-dependent-packages --force-overwrite --nocase"
+local ipkg = "opkg --force-removal-of-dependent-packages --force-overwrite"
 local icfg = "/etc/opkg.conf"
 
 module "luci.model.ipkg"
@@ -102,6 +102,10 @@ end
 
 function install(...)
 	return _action("install", ...)
+end
+
+function force_install(...)
+	return _action("install --force-depends", ...)
 end
 
 function installed(pkg)

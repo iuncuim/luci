@@ -38,12 +38,22 @@ luci.http.setfilehandler(
 
 if luci.http.formvalue("upload") then
     local file = luci.http.formvalue("ulfile")
-	local succ = ipkg.install(filename)
-    if succ == 0 then
-        um.value = translate("Package installed")
+    local force = luci.http.formvalue("force")
+	if force then
+        local succ = ipkg.force_install(filename)
+        if succ == 0 then
+            um.value = translate("Package installed")
+        else
+            um.value = translate("Error")
+	    end
     else
-        um.value = translate("Error")
-	end
+        local succ = ipkg.install(filename)
+        if succ == 0 then
+            um.value = translate("Package installed")
+        else
+            um.value = translate("Error")
+        end
+    end
     nixio.fs.remove(filename)
 	nixio.fs.rmdir(dir)
     nixio.fs.unlink("/tmp/luci-indexcache")
