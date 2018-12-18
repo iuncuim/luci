@@ -338,15 +338,10 @@ if hwtype == "broadcom" then
 		mode:value("11gst", "2.4GHz (802.11g + Turbo)")
 		mode:value("11lrs", "2.4GHz (802.11g Limited Rate Support)")
 	end
-	if hw_modes.a then mode:value("11a", "5GHz (802.11a)") end
 	if hw_modes.n then
 		if hw_modes.g then
 			mode:value("11ng", "2.4GHz (802.11g+n)")
 			mode:value("11n", "2.4GHz (802.11n)")
-		end
-		if hw_modes.a then
-			mode:value("11na", "5GHz (802.11a+n)")
-			mode:value("11n", "5GHz (802.11n)")
 		end
 		htmode = s:taboption("advanced", ListValue, "htmode", translate("HT mode (802.11n)"))
 		htmode:depends("hwmode", "11ng")
