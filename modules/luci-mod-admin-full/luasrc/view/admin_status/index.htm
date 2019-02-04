@@ -645,9 +645,9 @@
 
 			if (e = document.getElementById('adc'))
 				e.innerHTML = String.format(
-					'%.03f, %.03f',
-					info.adc[0] / 1000 + " <%:V%>",
-					info.adc[1] / 1000 + " <%:A%>"
+					'%s, %s',
+					info.adc[0],
+					info.adc[1]
 				);
 
 			if (e = document.getElementById('temp'))
