@@ -52,7 +52,7 @@
 			uptime     = sysinfo.uptime or 0,
 			localtime  = os.date(),
 			loadavg    = sysinfo.load or { 0, 0, 0 },
-			adc        = devinfo.voltage or { 0, 0, 0 },
+			adc        = devinfo.voltage or { 0, 0 },
 			temp       = devinfo.temperature or 0,
 			rssi       = devinfo.rssi or 0,
 			memory     = meminfo,
@@ -645,10 +645,9 @@
 
 			if (e = document.getElementById('adc'))
 				e.innerHTML = String.format(
-					'%.02f, %.02f, %.02f',
-					info.adc[0],
-					info.adc[1],
-					info.adc[2]
+					'%.03f, %.03f',
+					info.adc[0] / 1000 + " <%:V%>",
+					info.adc[1] / 1000 + " <%:A%>"
 				);
 
 			if (e = document.getElementById('temp'))
@@ -708,7 +707,7 @@
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
 		<tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr>
-		<tr><td width="33%"><%:Input Voltage%></td><td id="adc">-</td></tr>
+		<tr><td width="33%"><%:Input Voltage and Current%></td><td id="adc">-</td></tr>
 		<tr><td width="33%"><%:CPU Temperature%></td><td id="temp">-</td></tr>
 		<tr><td width="33%"><%:Mobile RSSI%></td><td id="rssi">-</td></tr>
 	</table>

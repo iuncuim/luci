@@ -12,7 +12,7 @@ pass = n:option(Value, "pass",  translate("Password"))
   function pass.cfgvalue(self, section)
     value = self.map:get(section, self.option)
     if value == nil then
-      local test = io.popen("getserialnum")
+      local test = io.popen("getinfo serialnum | cut -c 8-")
       local value = test:read("*a")
       test:close()
       return value
