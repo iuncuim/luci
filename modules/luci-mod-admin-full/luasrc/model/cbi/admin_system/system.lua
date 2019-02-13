@@ -27,7 +27,7 @@ s:tab("usb", translate("USB Configuration"))
 -- USB Properties
 --
 
-o = s:taboption("usb", ListValue, "usbmode", translate("USB Configuration"))
+o = s:taboption("usb", ListValue, "usbmode", translate("USB Mode"), translate("Changes will be applied after reboot"))
   o.nowrite = true
   o.default = "diag,serial,rmnet"
   o:value("disabled", translate("disabled"))
