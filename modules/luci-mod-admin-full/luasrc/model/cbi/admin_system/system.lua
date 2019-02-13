@@ -21,7 +21,20 @@ s.addremove = false
 s:tab("general",  translate("General Settings"))
 s:tab("logging",  translate("Logging"))
 s:tab("language", translate("Language and Style"))
+s:tab("usb", translate("USB Configuration"))
 
+--
+-- USB Properties
+--
+
+o = s:taboption("usb", ListValue, "usbmode", translate("USB Configuration"))
+  o.nowrite = true
+  o.default = "diag,serial,rmnet"
+  o:value("disabled", translate("disabled"))
+  o:value("diag,serial,rmnet", translate("default"))
+  o:value("diag,serial,rmnet,adb", translate("default with ADB"))
+  o:value("ncm", translate("Ethernet over USB: Network Control Model"))
+  o:value("rndis", translate("Ethernet over USB: Remote NDIS"))
 
 --
 -- System Properties
