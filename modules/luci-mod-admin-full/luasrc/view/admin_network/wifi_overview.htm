@@ -209,23 +209,20 @@
 				{
 					var iw = st[i];
 					var is_assoc = (iw.bssid && iw.bssid != '00:00:00:00:00:00' && iw.channel && iw.mode != 'Unknown' && !iw.disabled);
-					var is_assoc = (!iw.disabled);
 					var p = iw.quality;
 					var q = is_assoc ? p : -1;
 
 					var icon;
 					if (q < 0)
+					{
 						icon = "<%=resource%>/icons/signal-none.png";
-					else if (q == 0)
-						icon = "<%=resource%>/icons/signal-75-100.png";
-					else if (q < 25)
-						icon = "<%=resource%>/icons/signal-75-100.png";
-					else if (q < 50)
-						icon = "<%=resource%>/icons/signal-75-100.png";
-					else if (q < 75)
-						icon = "<%=resource%>/icons/signal-75-100.png";
+						p = '0'
+					}
 					else
+					{
 						icon = "<%=resource%>/icons/signal-75-100.png";
+						p = '100'
+					}
 
 					if (!devup[wifidevs[iw.id]])
 						devup[wifidevs[iw.id]] = is_assoc;
@@ -289,7 +286,7 @@
 								'<strong><%:Bitrate%>:</strong> %s <%:Mbit/s%>',
 									iw.channel ? iw.channel : '?',
 									iw.frequency ? iw.frequency : '?',
-									iw.bitrate ? iw.bitrate : '?'
+									iw.bitrate ? iw.bitrate : '54.0'
 							);
 						else
 							dev.innerHTML = '';
@@ -447,7 +444,7 @@
 	<% end %>
 
 
-<!-- 	<h2><%:Associated Stations%></h2>
+	<h2><%:Associated Stations%></h2>
 
 	<fieldset class="cbi-section">
 		<table class="cbi-section-table valign-middle" style="margin:10px" id="iw-assoclist">
@@ -465,7 +462,7 @@
 				</td>
 			</tr>
 		</table>
-	</fieldset> -->
+	</fieldset>
 </div>
 
 <%+footer%>

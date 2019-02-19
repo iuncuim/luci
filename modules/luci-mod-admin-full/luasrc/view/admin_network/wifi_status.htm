@@ -12,17 +12,15 @@
 
 				var icon;
 				if (q < 0)
+				{
 					icon = "<%=resource%>/icons/signal-none.png";
-				else if (q == 0)
-					icon = "<%=resource%>/icons/signal-0.png";
-				else if (q < 25)
-					icon = "<%=resource%>/icons/signal-0-25.png";
-				else if (q < 50)
-					icon = "<%=resource%>/icons/signal-25-50.png";
-				else if (q < 75)
-					icon = "<%=resource%>/icons/signal-50-75.png";
-				else
+					p = '0';
+				}
+				else 
+				{
 					icon = "<%=resource%>/icons/signal-75-100.png";
+					p = '100';
+				}
 
 				var s = document.getElementById('<%=self.option%>-iw-signal');
 				if (s)
@@ -48,7 +46,7 @@
 							iw.encryption ? iw.encryption : '<%:None%>',
 							iw.channel, iw.frequency ? iw.frequency : 0,
 							iw.txpower, iw.signal, iw.noise,
-							iw.bitrate ? iw.bitrate : 0, iw.country
+							iw.bitrate ? iw.bitrate : 54.0, iw.country
 					);
 				else if (d)
 					d.innerHTML = String.format(
