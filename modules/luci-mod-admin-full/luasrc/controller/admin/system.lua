@@ -13,7 +13,7 @@ function index()
 
 	entry({"admin", "system", "admin"}, cbi("admin_system/admin"), _("Administration"), 2)
 
-	if fs.access("/usr/bin/opkg") then
+	if fs.access("/bin/opkg") then
 		entry({"admin", "system", "packages"}, post_on({ exec = "1" }, "action_packages"), _("Software"), 10)
 		entry({"admin", "system", "packages", "ipkupload"}, form("admin_system/ipkupload"))
 		entry({"admin", "system", "packages", "ipkg"}, form("admin_system/ipkg"))
