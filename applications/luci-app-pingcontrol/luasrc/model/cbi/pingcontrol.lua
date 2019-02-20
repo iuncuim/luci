@@ -1,4 +1,6 @@
-require 'luci.sys'
+local sys = require "luci.sys"
+local utl = require "luci.util"
+
 m = Map("pingcontrol", "PingControl", translate("Server availability check"))
 
 section_gen = m:section(NamedSection, "pingcontrol", "pingcontrol", translate("General settings"))  -- create general section
@@ -13,10 +15,13 @@ check_period = section_gen:option(Value, "check_period",  translate("Period of c
   check_period.optional = false
 
 iface = section_gen:option(Value, "iface",  translate("Ping interface"))
-  iface.default = "internet"
-  iface.datatype = "network"
-  iface.rmempty = false
-  iface.optional = false
+  iface.default = internet
+  local _, object
+  for _, object in ipairs(utl.ubus()) do
+    local net = object:match("^network%.interface%.(.+)")
+    if net and net ~= "loopback" then iface:value(net) end
+  end
+
 
 testip = section_gen:option(DynamicList, "testip",  translate("IP address of remote server"))
   testip.datatype = "ipaddr"
