@@ -4,6 +4,8 @@
 
 module("luci.controller.admin.network", package.seeall)
 
+local utl = require "luci.util"
+
 function index()
 	local uci = require("luci.model.uci").cursor()
 	local page
@@ -251,6 +253,17 @@ function iface_status(ifaces)
 
 				subdevices = { }
 			}
+			if data.ifname == "rmnet_data0" then
+				local rv = { }
+				local s = utl.ubus("network.interface.%s_4" % data.id, "status", {})
+				if s and s['ipv4-address'] then
+					local a
+					for _, a in ipairs(s['ipv4-address']) do
+						rv[#rv+1] = "%s/%d" %{ a.address, a.mask }
+					end
+				end
+				data.ipaddrs    = rv
+			end
 
 			for _, device in ipairs(net:get_interfaces() or {}) do
 				data.subdevices[#data.subdevices+1] = {
