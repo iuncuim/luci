@@ -22,12 +22,10 @@ e = a:option(Flag,"enabled",translate("Enabled"),translate("Enable GRE (Generic 
 
 wan_ifname = a:option(Value, "wan_ifname", translate("WAN interface name"))
 	wan_ifname:value("", translate("-- Please choose --"))
-	wan_ifname:value("3g-internet", "3g-internet")
-	wan_ifname:value("wwan0", "wwan0")
+	wan_ifname:value("rmnet_data0", "mobile")
 
 mode = a:option(ListValue, "mode", translate("Tunnel mode"))
 	mode:value("gre", "GRE")
-	mode:value("ipip", "IP-in-IP")
 
 remote_ip = a:option(Value,"remote_ip",translate("Remote endpoint IP address"),translate("IP address of the remote GRE tunnel device."))
 	remote_ip.datatype="ip4addr"
