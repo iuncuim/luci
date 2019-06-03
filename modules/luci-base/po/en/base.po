@@ -3875,6 +3875,9 @@ msgstr "Serial Number"
 msgid "Input Voltage and Current"
 msgstr "Input Voltage and Current"
 
+msgid "Input Voltage"
+msgstr "Input Voltage"
+
 msgid "CPU Temperature"
 msgstr "CPU Temperature"
 

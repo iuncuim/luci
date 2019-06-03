@@ -4098,6 +4098,9 @@ msgstr "Серийный номер"
 msgid "Input Voltage and Current"
 msgstr "Входные напряжение и ток"
 
+msgid "Input Voltage"
+msgstr "Входное напряжение"
+
 msgid "CPU Temperature"
 msgstr "Температура CPU"
 
