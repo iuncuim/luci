@@ -204,6 +204,9 @@ if has_ntpd then
 		o = s:option(Flag, "enable", translate("Enable NTP client"))
 		o.rmempty = false
 
+		o = s:option(Flag, "use_gps", translate("GPS Clock Synchronization"))
+		o:depends("enable", "1")
+
 		o = s:option(Flag, "enable_server", translate("Provide NTP server"))
 		o:depends("enable", "1")
 

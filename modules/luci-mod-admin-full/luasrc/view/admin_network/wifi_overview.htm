@@ -282,11 +282,9 @@
 					{
 						if (is_assoc)
 							dev.innerHTML = String.format(
-								'<strong><%:Channel%>:</strong> %s (%s <%:GHz%>) | ' +
-								'<strong><%:Bitrate%>:</strong> %s <%:Mbit/s%>',
+								'<strong><%:Channel%>:</strong> %s (%s <%:GHz%>)',
 									iw.channel ? iw.channel : '?',
-									iw.frequency ? iw.frequency : '?',
-									iw.bitrate ? iw.bitrate : '54.0'
+									iw.frequency ? iw.frequency : '?'
 							);
 						else
 							dev.innerHTML = '';

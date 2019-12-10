@@ -40,13 +40,11 @@
 						'<strong><%:Tx-Power%>:</strong> %d <%:dBm%><br />' +
 						'<strong><%:Signal%>:</strong> %d <%:dBm%> | ' +
 						'<strong><%:Noise%>:</strong> %d <%:dBm%><br />' +
-						'<strong><%:Bitrate%>:</strong> %.1f <%:Mbit/s%> | ' +
 						'<strong><%:Country%>:</strong> %s',
 							iw.mode, iw.ssid, iw.bssid,
 							iw.encryption ? iw.encryption : '<%:None%>',
 							iw.channel, iw.frequency ? iw.frequency : 0,
-							iw.txpower, iw.signal, iw.noise,
-							iw.bitrate ? iw.bitrate : 54.0, iw.country
+							iw.txpower, iw.signal, iw.noise, iw.country
 					);
 				else if (d)
 					d.innerHTML = String.format(
