@@ -29,3 +29,25 @@ if luci.model.network:has_ipv6() then
     ipv6 = section:taboption("advanced", Flag, "ipv6", translate("Enable IPv6 negotiation"))
     ipv6.default = ipv6.disabled
 end
+
+defaultroute = section:taboption("advanced", Flag, "defaultroute",
+	translate("Use default gateway"),
+	translate("If unchecked, no default route is configured"))
+defaultroute.default = defaultroute.enabled
+
+metric = section:taboption("advanced", Value, "metric",
+	translate("Use gateway metric"))
+metric.placeholder = "0"
+metric.datatype    = "uinteger"
+metric:depends("defaultroute", defaultroute.enabled)
+
+peerdns = section:taboption("advanced", Flag, "peerdns",
+	translate("Use DNS servers advertised by peer"),
+	translate("If unchecked, the advertised DNS server addresses are ignored"))
+peerdns.default = peerdns.enabled
+
+dns = section:taboption("advanced", DynamicList, "dns",
+	translate("Use custom DNS servers"))
+dns:depends("peerdns", "")
+dns.datatype = "ipaddr"
+dns.cast     = "string"

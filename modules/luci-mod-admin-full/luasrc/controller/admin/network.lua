@@ -263,6 +263,7 @@ function iface_status(ifaces)
 					end
 				end
 				data.ipaddrs    = rv
+				data.macaddr    = nil
 			end
 
 			for _, device in ipairs(net:get_interfaces() or {}) do
