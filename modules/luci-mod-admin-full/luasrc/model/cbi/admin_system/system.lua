@@ -71,6 +71,7 @@ function o.write(self, section, value)
 	local timezone = lookup_zone(value) or "GMT0"
 	self.map.uci:set("system", section, "timezone", timezone)
 	fs.writefile("/etc/TZ", timezone .. "\n")
+	luci.sys.call("ln -sf /usr/share/zoneinfo/%s /tmp/localtime" %{ value })
 end
 
 
